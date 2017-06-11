@@ -10,4 +10,5 @@ import pworks.household.data.domain.UserDocument;
 @Repository
 public interface UserRepository extends MongoRepository<UserDocument, BigInteger> {
 
+
 }
