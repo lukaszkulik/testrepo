@@ -3,8 +3,12 @@ package pworks.household.data.domain;
 import java.math.BigInteger;
 import java.util.Date;
 
+import org.joda.time.DateTime;
+import org.springframework.util.Assert;
+
 import pworks.household.common.Priority;
 import pworks.household.common.Status;
+import pworks.household.common.exception.UnrealisticDateException;
 
 public class Todo {
 	
@@ -36,6 +40,7 @@ public class Todo {
 	}
 
 	public void setItself(String itself) {
+		Assert.hasText(itself, "TODO cannot not be empty!");
 		this.itself = itself;
 	}
 
@@ -43,7 +48,10 @@ public class Todo {
 		return completeToDate;
 	}
 
-	public void setCompleteToDate(Date completeToDate) {
+	public void setCompleteToDate(Date completeToDate) throws UnrealisticDateException {
+		if(completeToDate.before(DateTime.now().toDate())) {
+			throw new UnrealisticDateException(completeToDate);
+		}
 		this.completeToDate = completeToDate;
 	}
 
@@ -51,7 +59,10 @@ public class Todo {
 		return completeOnDate;
 	}
 
-	public void setCompleteOnDate(Date completeOnDate) {
+	public void setCompleteOnDate(Date completeOnDate) throws UnrealisticDateException {
+		if(completeOnDate.before(DateTime.now().toDate())) {
+			throw new UnrealisticDateException(completeToDate);
+		}
 		this.completeOnDate = completeOnDate;
 	}
 
@@ -60,6 +71,7 @@ public class Todo {
 	}
 
 	public void setPriority(Priority priority) {
+		Assert.notNull(priority, "Priority cannot be empty!");
 		this.priority = priority;
 	}
 
@@ -76,6 +88,7 @@ public class Todo {
 	}
 
 	public void setStatus(Status status) {
+		Assert.notNull(status, "Status cannot be empry!");
 		this.status = status;
 	}
 }

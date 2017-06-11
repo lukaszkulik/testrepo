@@ -13,10 +13,10 @@ public final class EmailAddress {
 		this.value = value;
 	}
 	
+	// TODO implement real validation
 	private boolean isValid(String emailAddress) {
 		return true;
 	}
-	
 	
 	// ------------------------------------------------------------
 	// -----	GETTERS & SETTERS	-------------------------------

@@ -1,10 +1,12 @@
 package pworks.household.data.domain;
 
 import org.springframework.data.mongodb.core.index.Indexed;
+import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.util.Assert;
 
 import pworks.household.data.AbstractDocument;
 
+@Document(collection="user")
 public class UserDocument extends AbstractDocument {
 	
 	@Indexed(unique=true)
@@ -19,10 +21,10 @@ public class UserDocument extends AbstractDocument {
 
 	public UserDocument(String username, String firstName, String lastName, EmailAddress emailAddress) {
 		super();
-		Assert.hasText(username, "Username should not be empty!");
-		Assert.hasText(firstName, "First name should not be empty!");
-		Assert.hasText(lastName, "Last name should not be empty!");
-		Assert.hasText(emailAddress.toString(), "E-mail address should not be empty!");
+		Assert.hasText(username, "Username cannot not be empty!");
+		Assert.hasText(firstName, "First name cannot not be empty!");
+		Assert.hasText(lastName, "Last name cannot not be empty!");
+		Assert.hasText(emailAddress.toString(), "E-mail address cannot not be empty!");
 		this.username = username;
 		this.firstName = firstName;
 		this.lastName = lastName;
@@ -38,7 +40,7 @@ public class UserDocument extends AbstractDocument {
 	}
 
 	public void setFirstName(String firstName) {
-		Assert.hasText(firstName, "First name should not be empty!");
+		Assert.hasText(firstName, "First name cannot not be empty!");
 		this.firstName = firstName;
 	}
 
@@ -47,7 +49,7 @@ public class UserDocument extends AbstractDocument {
 	}
 
 	public void setLastName(String lastName) {
-		Assert.hasText(lastName, "Last name should not be empty!");
+		Assert.hasText(lastName, "Last name cannot not be empty!");
 		this.lastName = lastName;
 	}
 
